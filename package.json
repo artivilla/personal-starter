@@ -8,10 +8,12 @@
     "build": "parcel build index.html",
     "test": "jest",
     "lint": "xo",
-    "format": "prettier --write"
+    "format": "prettier --write src/**",
+    "flow": "flow"
   },
   "xo": {
-    "prettier": true
+    "prettier": true,
+    "extends": "xo-flow"
   },
   "keywords": [
     "parcel",
@@ -26,10 +28,15 @@
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
+    "babel-eslint": "^10.0.1",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
+    "eslint-config-xo-flow": "^0.1.0",
+    "eslint-plugin-flowtype": "^3.2.0",
+    "flow-bin": "^0.89.0",
     "jest": "^23.6.0",
     "parcel-bundler": "^1.11.0",
+    "prettier": "^1.15.3",
     "react-testing-library": "^5.4.2",
     "xo": "^0.23.0"
   }
