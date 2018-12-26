@@ -13,7 +13,8 @@
     "flow": "flow src/"
   },
   "xo": {
-    "prettier": true
+    "prettier": true,
+    "extends": "xo-react"
   },
   "keywords": [
     "parcel",
@@ -32,11 +33,21 @@
     "babel-preset-env": "^1.7.0",
     "babel-preset-flow": "^6.23.0",
     "babel-preset-react": "^6.24.1",
+    "eslint-config-xo": "^0.25.1",
+    "eslint-config-xo-react": "^0.17.0",
+    "eslint-plugin-react": "^7.11.1",
     "flow-bin": "^0.89.0",
+    "husky": "^1.2.1",
     "jest": "^23.6.0",
+    "lint-staged": "^8.1.0",
     "parcel-bundler": "^1.11.0",
     "prettier": "^1.15.3",
     "react-testing-library": "^5.4.2",
     "xo": "^0.23.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run flow"
+    }
   }
 }
