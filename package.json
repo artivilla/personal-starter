@@ -1,7 +1,7 @@
 {
   "name": "react-playground",
   "version": "1.0.0",
-  "description": "",
+  "description": "Highly opinionated starter web application for react client side projects",
   "main": "index.js",
   "scripts": {
     "start": "parcel index.html",
@@ -17,9 +17,11 @@
     "extends": "xo-react"
   },
   "keywords": [
-    "parcel",
     "playground",
-    "hooks"
+    "starter",
+    "parcel",
+    "react",
+    "tooling"
   ],
   "author": "Arti Villa",
   "license": "ISC",
