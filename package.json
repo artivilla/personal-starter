@@ -36,7 +36,9 @@
     "@babel/preset-env": "^7.2.3",
     "@babel/preset-flow": "^7.0.0",
     "@babel/preset-react": "^7.0.0",
+    "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^10.0.1",
+    "babel-jest": "^23.6.0",
     "babel-preset-env": "^1.7.0",
     "babel-preset-flow": "^6.23.0",
     "babel-preset-react": "^6.24.1",
@@ -45,11 +47,13 @@
     "eslint-plugin-react": "^7.11.1",
     "flow-bin": "^0.89.0",
     "husky": "^1.2.1",
+    "jest": "^23.6.0",
     "jest-dom": "^3.0.0",
     "lint-staged": "^8.1.0",
     "parcel-bundler": "^1.11.0",
     "prettier": "^1.15.3",
     "react-testing-library": "^5.4.2",
+    "regenerator-runtime": "^0.13.1",
     "xo": "^0.23.0"
   },
   "husky": {
