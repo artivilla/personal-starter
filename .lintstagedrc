@@ -1,7 +1,10 @@
 {
   "linters": {
+    *.+(js|jsx)": [
+      "xo"
+    ],
     "*.+(js|jsx|json|yml|yaml|css|less|scss|ts|tsx|md|graphql|mdx)": [
-      "prettier --write",
+      "prettier --write src/**/*",
       "git add"
     ]
   }

@@ -5,7 +5,9 @@ const Counter = () => {
 	return (
 		<React.Fragment>
 			<h1>{count}</h1>
-			<button onClick={() => setCount(count + 1)}>{count}</button>
+			<button data-testid='button' onClick={() => setCount(count + 1)}>
+				{count}
+			</button>
 		</React.Fragment>
 	)
 }
