@@ -6,4 +6,12 @@ module.exports = {
 		'\\.css$': require.resolve('./test/style-mock.js'),
 	},
 	collectCoverageFrom: ['**/src/**/*.js'],
+	coverageThreshold: {
+		global: {
+			statements: 50,
+			braches: 100,
+			functions: 100,
+			lines: 50,
+		},
+	},
 }
