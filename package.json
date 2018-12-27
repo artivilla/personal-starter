@@ -7,6 +7,7 @@
     "start": "parcel index.html -p 4444",
     "build": "parcel build index.html",
     "test": "jest",
+    "test:debug": "node --inspect-brk ./node_modules/jest/bin/jest",
     "lint": "xo src/",
     "format": "prettier \"**/*.+(js|jsx|css|less|scss|md|graphql|mdx)\" --write",
     "validate": "npm run test && npm run flow",
