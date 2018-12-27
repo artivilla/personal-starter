@@ -6,7 +6,8 @@
   "scripts": {
     "start": "parcel index.html -p 4444",
     "build": "parcel build index.html",
-    "test": "jest",
+    "test": "jest --coverage",
+    "report": "npx opn coverage/lcov-report/index.html",
     "test:debug": "node --inspect-brk ./node_modules/jest/bin/jest",
     "lint": "xo src/",
     "format": "prettier \"**/*.+(js|jsx|css|less|scss|md|graphql|mdx)\" --write",
@@ -53,6 +54,7 @@
     "jest": "^23.6.0",
     "jest-dom": "^3.0.0",
     "lint-staged": "^8.1.0",
+    "opn-cli": "^4.0.0",
     "parcel-bundler": "^1.11.0",
     "prettier": "^1.15.3",
     "react-testing-library": "^5.4.2",
