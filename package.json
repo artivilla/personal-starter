@@ -4,7 +4,7 @@
   "description": "Highly opinionated starter web application for react client side projects",
   "main": "index.js",
   "scripts": {
-    "start": "parcel index.html",
+    "start": "parcel index.html -p 4444",
     "build": "parcel build index.html",
     "test": "jest",
     "lint": "xo src/",
