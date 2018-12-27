@@ -1,0 +1,76 @@
+# set encrypted env files for CI in settings or git: https://github.com/circleci/encrypted-files
+# ref: https://circleci.com/blog/publishing-npm-packages-using-circleci-2-0/
+
+defaults: &defaults
+  docker:
+    - image: circleci/node:10
+  working_directory: ~/personal-starter
+
+version: 2
+  jobs:
+    build: # build is required if no workflows are specified
+      docker:
+        - image: circleci/node:8-browsers
+      working_directory: ~/personal-starter
+      steps:
+        - checkout
+         - restore_cache:
+          key:
+          - v1-dependencies-{{ checksum "package.json" }}
+        - run: npm install
+        - run: npm validate
+        - run:
+          name: Push codecoverage
+          command: npx codecov
+         - save_cache:
+          key:
+          - v1-dependencies-{{ checksum "package.json" }}
+          paths:
+            - ./node_modules
+
+    publish-stable:
+      <<: *defaults
+      steps:
+        - checkout
+        - run: npm install
+        - run: npm validate
+        - run:
+            name: Saving Authentication Information
+            command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
+        # - run:
+        #     name: Publishing Stable Channel
+        #     command: npm publish
+        
+    publish-canary:
+      <<: *defaults
+      steps:
+        - checkout
+        - run: npm install
+        - run: npm validate
+        # - run:
+        #     name: Publishing Canary Channel
+        #     command: npm publish dist-tag=canary -yes
+workflows:
+  version: 2
+  unscheduled:
+    jobs:
+      - build:
+          filters:
+            tags:
+              only: /.*/
+      - publish-canary:
+          requires:
+            - build
+          filters:
+            tags:
+              only: /^.*canary.*($|\b)/
+            branches:
+              ignore: /.*/
+      - publish-stable:
+          requires:
+            - build
+          filters:
+            tags:
+              only: /^(\d+\.)?(\d+\.)?(\*|\d+)$/
+            branches:
+              ignore: /.*/
