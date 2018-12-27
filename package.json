@@ -26,8 +26,8 @@
   "author": "Arti Villa",
   "license": "ISC",
   "dependencies": {
-    "react": "^16.7.0-alpha.2",
-    "react-dom": "^16.7.0-alpha.2",
+    "react": "16.7.0-alpha.2",
+    "react-dom": "16.7.0-alpha.2",
     "react-test-renderer": "^16.7.0-alpha.2"
   },
   "devDependencies": {
