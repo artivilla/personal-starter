@@ -56,6 +56,7 @@
     "is-ci-cli": "^1.1.1",
     "jest": "^23.6.0",
     "jest-dom": "^3.0.0",
+    "jest-watch-typeahead": "^0.2.0",
     "lint-staged": "^8.1.0",
     "opn-cli": "^4.0.0",
     "parcel-bundler": "^1.11.0",
