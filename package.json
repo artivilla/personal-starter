@@ -8,8 +8,8 @@
     "build": "parcel build index.html",
     "test": "jest",
     "lint": "xo src/",
-    "format": "prettier \"**/*.js\" --write",
-    "validate": "npm run lint && npm run test && prettier --list-different && npm run flow",
+    "format": "prettier \"**/*.+(js|jsx|css|less|scss|md|graphql|mdx)\" --write",
+    "validate": "npm run test && npm run flow",
     "flow": "flow src/"
   },
   "xo": {

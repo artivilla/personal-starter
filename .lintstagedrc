@@ -1,9 +1,9 @@
 {
   "linters": {
     "*.js": [
-      "xo"
+      "xo src/"
     ],
-    "**/*.+(js|jsx|yml|yaml|css|less|scss|ts|tsx|md|graphql|mdx)": [
+    "**/*.+(js|jsx|css|less|scss|md|graphql|mdx)": [
       "prettier --write"
     ],
   }
