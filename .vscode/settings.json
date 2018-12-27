@@ -1,4 +1,7 @@
 {
     "editor.formatOnSave": true,
-    "javascript.validate.enable": false
+    "javascript.validate.enable": false,
+    "workbench.colorCustomizations": {
+        "statusBar.background": "#4242BA"
+    } 
 }
