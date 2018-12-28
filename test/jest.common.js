@@ -11,4 +11,9 @@ module.exports = {
 		'jest-watch-typeahead/filename',
 		'jest-watch-typeahead/testname',
 	],
+	coveragePathIgnorePatterns: [
+		'node_modules/',
+		'/__tests__',
+		'/__server_tests__/',
+	],
 }
