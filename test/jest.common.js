@@ -6,10 +6,10 @@ module.exports = {
 		'\\.module\\.css$': 'identity-obj-proxy',
 		'\\.css$': require.resolve('./style-mock.js'),
 	},
-	collectCoverageFrom: ['**/src/**/*.js'],
 	watchPlugins: [
 		'jest-watch-typeahead/filename',
 		'jest-watch-typeahead/testname',
+		'jest-watch-select-projects',
 	],
 	coveragePathIgnorePatterns: [
 		'node_modules/',
