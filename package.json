@@ -20,9 +20,6 @@
     "validate": "npm run test && npm run flow",
     "flow": "flow src/"
   },
-  "resolutions": {
-    "**/eslint": "5.11.0"
-  },
   "xo": {
     "prettier": true,
     "extends": "xo-react",

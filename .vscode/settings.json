@@ -2,6 +2,7 @@
     "editor.formatOnSave": true,
     "javascript.validate.enable": false,
     "workbench.colorCustomizations": {
-        "statusBar.background": "#4242BA"
+        "statusBar.background": "#8c6cb6",
+        "statusBar.foreground": "#ffffff",
     } 
 }
