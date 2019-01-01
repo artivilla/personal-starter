@@ -3,9 +3,13 @@
   "version": "1.0.0",
   "description": "Highly opinionated starter web application for react client side projects",
   "main": "index.js",
+  "engines": {
+    "node": "^8 || ^10"
+  },
   "scripts": {
     "start": "parcel index.html -p 4444",
     "build": "parcel build index.html",
+    "clean": "rm -rf node_modules/ ~/.xo-cache build/",
     "test": "is-ci \"test:coverage\" \"test:watch\"",
     "test:coverage": "jest --coverage",
     "test:watch": "jest --watch",
@@ -16,9 +20,25 @@
     "validate": "npm run test && npm run flow",
     "flow": "flow src/"
   },
+  "resolutions": {
+    "**/eslint": "5.11.0"
+  },
   "xo": {
     "prettier": true,
-    "extends": "xo-react"
+    "extends": "xo-react",
+    "globals": [
+      "expect",
+      "test",
+      "document"
+    ],
+    "rules": {
+      "unicorn/filename-case": [
+        "error",
+        {
+          "case": "pascalCase"
+        }
+      ]
+    }
   },
   "keywords": [
     "playground",
@@ -51,7 +71,7 @@
     "codecov": "^3.1.0",
     "eslint-config-xo": "^0.25.1",
     "eslint-config-xo-react": "^0.17.0",
-    "eslint-plugin-react": "^7.11.1",
+    "eslint-plugin-react": "^7.12.0",
     "flow-bin": "^0.89.0",
     "husky": "^1.2.1",
     "identity-obj-proxy": "^3.0.0",

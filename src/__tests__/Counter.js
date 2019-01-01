@@ -1,6 +1,6 @@
 import React from 'react'
-import { render, fireEvent, getByText } from 'react-testing-library'
-import Counter from '../Components/Counter'
+import { render, fireEvent } from 'react-testing-library'
+import Counter from '../components/Counter'
 
 test('counter increments by 1', () => {
 	const { getByTestId } = render(<Counter />)

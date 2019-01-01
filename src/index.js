@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import Counter from './Components/Counter'
+import Counter from './components/Counter'
 
-var mountNode = document.getElementById('app')
+const mountNode = document.getElementById('app')
 ReactDOM.render(<Counter />, mountNode)
