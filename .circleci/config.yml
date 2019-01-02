@@ -1,76 +1,84 @@
-# set encrypted env files for CI in settings or git: https://github.com/circleci/encrypted-files
-# ref: https://circleci.com/blog/publishing-npm-packages-using-circleci-2-0/
-
+# Ref: https://github.com/niccai/zeit-now-with-circleci/blob/develop/.circleci/config.yml
 defaults: &defaults
   docker:
-    - image: circleci/node:10
-  working_directory: ~/personal-starter
+    - image: circleci/node:latest
+  working_directory: ~/tmp/personal-starter
+  parallelism: 1
 
 version: 2
-  jobs:
-    build: # build is required if no workflows are specified
-      docker:
-        - image: circleci/node:8-browsers
-      working_directory: ~/personal-starter
-      steps:
-        - checkout
-         - restore_cache:
+jobs:
+  validate:
+    <<: *defaults
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ~/tmp/personal-starter
+      - restore_cache:
           key:
-          - v1-dependencies-{{ checksum "package.json" }}
-        - run: npm install
-        - run: npm validate
-        - run:
-          name: Push codecoverage
-          command: npx codecov
-         - save_cache:
-          key:
-          - v1-dependencies-{{ checksum "package.json" }}
+            - npm-cache-{{ .Branch }}-{{ checksum "package.json" }}
+            - npm-cache-{{ .Branch }}
+            - npm-cache-
+      - run: npm install
+      - run: npm validate
+      - run:
+        name: push codecoverage
+        command: npx codecov
+      - save_cache:
+          key: npm-cache-{{ .Branch }}-{{ checksum "package.json" }}
           paths:
             - ./node_modules
+      # - persist_to_workspace:
+      #   root: .
+      #   paths: .
+  build:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+        at: ~/tmp/personal-starter
+      - run: npm build
+  staging-release:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+        at: ~/tmp/personal-starter
+      - run: sudo now install --global --unsafe-perm now
+      - deploy:
+        command: |
+          now --token $ZEIT_TOKEN --local-config .now/now.canary.json
+          now --token $ZEIT_TOKEN --local-config .now/now.canary.json alias
+  production-release:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+        at: ~/tmp/personal-starter
+      - run: sudo now install --global --unsafe-perm now
+      - deploy:
+          name: alias deployments
+          command: |
+            now --token $ZEIT_TOKEN --local-config .now/now.prod.json
+            now --token $ZEIT_TOKEN --local-config .now/now.prod.json alias
 
-    publish-stable:
-      <<: *defaults
-      steps:
-        - checkout
-        - run: npm install
-        - run: npm validate
-        - run:
-            name: Saving Authentication Information
-            command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
-        # - run:
-        #     name: Publishing Stable Channel
-        #     command: npm publish
-        
-    publish-canary:
-      <<: *defaults
-      steps:
-        - checkout
-        - run: npm install
-        - run: npm validate
-        # - run:
-        #     name: Publishing Canary Channel
-        #     command: npm publish dist-tag=canary -yes
 workflows:
   version: 2
-  unscheduled:
+  deployments:
     jobs:
-      - build:
-          filters:
-            tags:
-              only: /.*/
-      - publish-canary:
-          requires:
-            - build
-          filters:
-            tags:
-              only: /^.*canary.*($|\b)/
-            branches:
-              ignore: /.*/
-      - publish-stable:
-          requires:
-            - build
-          filters:
-            tags:
-              only: /^(\d+\.)?(\d+\.)?(\*|\d+)$/
-            branches:
-              ignore: /.*/
+      - validate
+      - build
+      # - branch-release:
+      # configuration to deploy new now URL per feature
+      - staging-release:
+        requires:
+          - validate
+          - build
+        filters:
+          branches:
+            only: master
+            tags: /^.*canary.*($|\b)/
+      - production-release:
+        requires:
+          - validate
+          - build
+        filters:
+          branches:
+            only: master
+            tags: /^(\d+\.)?(\d+\.)?(\*|\d+)$/
