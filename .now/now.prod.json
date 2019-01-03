@@ -1,3 +1,4 @@
 {
-	"alias": "personal-starter.now.sh"
+	"alias": "personal-starter.now.sh",
+	"files": "dist/"
 }

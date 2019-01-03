@@ -1,3 +1,4 @@
 {
-	"alias": "personal-starter.canary.now.sh"
+	"alias": "personal-starter.canary.now.sh",
+	"files": "dist/"
 }
