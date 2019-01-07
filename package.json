@@ -1,10 +1,13 @@
 {
 	"name": "react-starter",
-	"version": "0.0.0",
+	"version": "1.0.0-canary.01",
 	"description": "Highly opinionated starter web application for react client side projects",
 	"main": "index.js",
 	"engines": {
 		"node": "^8 || ^10"
+	},
+	"bin": {
+		"upgrade-tags": "./bin/upgrade-tags.js"
 	},
 	"scripts": {
 		"start": "parcel index.html -p 4444",
@@ -19,7 +22,7 @@
 		"format": "prettier \"**/*.+(js|jsx|css|less|scss|md|graphql|mdx)\" --write",
 		"validate": "npm run test && npm run flow",
 		"flow": "flow src/",
-		"update-tags": "./bin/upgrade-tags.sh"
+		"upgrade-tags": "npx upgrade-tags"
 	},
 	"xo": {
 		"prettier": true,
@@ -31,10 +34,7 @@
 		],
 		"rules": {
 			"unicorn/filename-case": [
-				"error",
-				{
-					"case": "pascalCase"
-				}
+				"off"
 			]
 		}
 	},
@@ -67,9 +67,12 @@
 		"babel-preset-flow": "^6.23.0",
 		"babel-preset-react": "^6.24.1",
 		"codecov": "^3.1.0",
+		"eol": "^0.9.1",
 		"eslint-config-xo": "^0.25.1",
 		"eslint-config-xo-react": "^0.17.0",
 		"eslint-plugin-react": "^7.12.0",
+		"execa": "^1.0.0",
+		"find-versions": "^3.0.0",
 		"flow-bin": "^0.89.0",
 		"husky": "^1.2.1",
 		"identity-obj-proxy": "^3.0.0",
@@ -84,11 +87,13 @@
 		"prettier": "^1.15.3",
 		"react-testing-library": "^5.4.2",
 		"regenerator-runtime": "^0.13.1",
+		"simple-git": "^1.107.0",
 		"xo": "^0.23.0"
 	},
 	"husky": {
 		"hooks": {
-			"pre-commit": "lint-staged && npm run flow"
+			"pre-commit": "lint-staged && npm run flow",
+			"post-commit": "npm run update-tags"
 		}
 	}
 }
