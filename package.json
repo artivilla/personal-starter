@@ -1,6 +1,6 @@
 {
 	"name": "react-starter",
-	"version": "1.0.0-canary.01",
+	"version": "1.0.0",
 	"description": "Highly opinionated starter web application for react client side projects",
 	"main": "index.js",
 	"engines": {
@@ -22,7 +22,7 @@
 		"format": "prettier \"**/*.+(js|jsx|css|less|scss|md|graphql|mdx)\" --write",
 		"validate": "npm run test && npm run flow",
 		"flow": "flow src/",
-		"upgrade-tags": "npx upgrade-tags"
+		"upgrade-tags": "upgrade-tags"
 	},
 	"xo": {
 		"prettier": true,
@@ -93,7 +93,7 @@
 	"husky": {
 		"hooks": {
 			"pre-commit": "lint-staged && npm run flow",
-			"post-commit": "npm run update-tags"
+			"post-commit": "npm run upgrade-tags"
 		}
 	}
 }
