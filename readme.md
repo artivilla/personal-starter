@@ -1,16 +1,18 @@
 ## personal-starter
 
-> Note: This boilerplate is highly opinionated and designed for personal use only. It will not be maintained for community driven projects however feel free to fork for own use. Tooling includes xo, prettier, parcel, react 16.7-alpha, flow, jest, cypruss, now@1.x, circleCI, codecov
+> This template starter has boilerplate for starting client side react apps. Tooling includes prettier, unopinionated eslint config, parcel build, react@16.8, flow, jest, cypruss, serverless deployment via now@2, circleCI, codecov.
 
 [![CircleCI](https://circleci.com/gh/artivilla/personal-starter.svg?style=svg)](https://circleci.com/gh/artivilla/personal-starter)
 [![codecov](https://codecov.io/gh/artivilla/personal-starter/branch/master/graph/badge.svg)](https://codecov.io/gh/artivilla/personal-starter)
 ![Greenkeeper Enabledflat](https://img.shields.io/badge/Greenkeeper-enabled-4c1.svg?colorA=555&style=flat)
-[![XO code style](https://img.shields.io/badge/code_style-XO-5ed9c7.svg)](https://github.com/xojs/xo)
 [![jest](https://jestjs.io/img/jest-badge.svg)](https://github.com/facebook/jest)
+[![style: styled-components](https://img.shields.io/badge/style-%F0%9F%92%85%20styled--components-orange.svg?colorB=daa357&colorA=db748e)](https://github.com/styled-components/styled-components)
 
-### CI/CD
 
-CircleCI handles the base defaults in addition to the following rulesets for deployments:
+### getting started
+Hit the `Use this template` to get a copy of this react starter.
 
-- Deploy tags formatted x.x.x to production on master only
-- Deploy tags formatted \*-canary to staging on master only
+### deployment strategy (handled via CircleCI)
+
+- Update pkg tag formatted x.x.x to production (master only)
+- Update pkg tag formatted \*-canary to staging (master only)
